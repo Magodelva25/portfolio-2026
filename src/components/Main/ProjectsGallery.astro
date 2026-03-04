@@ -1,16 +1,19 @@
 ---
-import "../styles/globals.css";
-import ProjectCard from "./UI/projectCard.astro";
+import "../../styles/globals.css"
+import ProjectCard from "../UI/projectCard.astro";
 ---
 
-<section id="container" class="w-full flex flex-col h-auto bg-black px-5 py-15 ">
+<section id="container" class="w-full flex flex-col h-auto bg-black px-5 pt-30 ">
 	<div class="flex flex-col justify-end>">
 		<h2 class=" text-white pb-5">Some 
         <p class="text-[#FCEC00]">projects</p>
         </h2>
-	    <p class="text-white">
-		See all projects -
-	    </p>	
+		<div class="flex justify-between">
+			<p class="text-white">
+			See all projects
+			</p>
+			<p class="text-white">+</p>	
+		</div>
 	</div>
     <ProjectCard/>
 	

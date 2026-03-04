@@ -1,4 +1,6 @@
 ---
+import Tags from "./tags.astro";
+
 const {
   title = "Título de la card",
   text = "Texto de ejemplo",
@@ -6,9 +8,28 @@ const {
 ---
 
 <div class="card">
-  <div class="card-content bg-white rounded-2xl w-auto h-auto p-5">
-    <h3>{title}</h3>
-    <p>{text}</p>
+  <div class="card-content border-[0.5px] border-amber-200 rounded-2xl w-auto h-auto mt-5">
+    <div class="flex w-full h-30 bg-amber-400 rounded-t-2xl"></div>
+    <div class="info-tags w-full flex text-white p-5 font-bold text-[0.8rem]">
+      <span>Fecha</span>
+      <span>-</span>
+      <span>Cliente</span>
+      <span>-</span>
+      <span>Otros</span>
+    </div>
+    <h3 class="card-title flex text-white pb-5 px-5">{title}</h3>
+    <p class="card-description text-white pb-5 px-5">{text}</p>
+    <div class="badge p-5 w-auto  ">
+      <Tags/>
+    </div>
   </div>
+
+
+<style>
+  .card{
+    font-family: Inter;
+    font-weight: 200;
+  }
+</style>
 
   

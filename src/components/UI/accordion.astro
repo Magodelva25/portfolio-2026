@@ -19,18 +19,18 @@ const items: AccordionItem[] = [
 ];
 ---
 
-<div class="accordion">
+<div class="flex flex-col gap-1">
   {items.map((item) => (
-    <div class="accordion-item">
+    <div class="accordion-item border-b-[0.5px] border-white overflow-hidden">
       <button
-        class="accordion-trigger"
+        class="accordion-button flex justify-between items-center transition-all duration-75 ease-in w-full text-[1rem] p-[1rem] text-white  cursor-pointer hover:bg-white"
         onclick="this.parentElement.classList.toggle('open')"
       >
         {item.title}
-        <span class="arrow">⌄</span>
+        <span class="arrow transition-transform duration-75 ease-in">⌄</span>
       </button>
 
-      <div class="accordion-content">
+      <div class="accordion-content max-h-0 overflow-hidden ease-in duration-75 transition:p-5">
         {item.content}
       </div>
     </div>
@@ -38,49 +38,25 @@ const items: AccordionItem[] = [
 </div>
 
 <style>
-  .accordion {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .accordion-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .accordion-trigger {
-    width: 100%;
-    padding: 1rem;
-    background: #f7f7f7;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.2s ease;
-  }
-
-  .accordion-trigger:hover {
-    background: #eee;
-  }
-
-  .arrow {
-    transition: transform 0.3s ease;
-  }
 
   .accordion-item.open .arrow {
     transform: rotate(180deg);
   }
 
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 1rem;
-    transition: max-height 0.35s ease, padding 0.35s ease;
+  .accordion-button{
+    font-family: Inter;
+    font-weight: 200;
+    font-size: 1.8rem;
+
   }
+
+  .accordion-content{
+    font-family: Inter;
+    font-weight: 200;
+    font-size: 1rem;
+
+  }
+
 
   .accordion-item.open .accordion-content {
     max-height: 500px;
