@@ -1,0 +1,27 @@
+---
+import "../styles/globals.css";
+import Accordion from "./UI/accordion.astro";
+---
+
+<section id="container" class="w-full h-auto bg-black px-5 py-15 flex flex-col">
+  <div class="flex flex-col justify-end>">
+    <h2 class="text-white pb-5">
+      Here’s my
+      <p class="text-[#FCEC00]">proccess</p>
+    </h2>
+    <p class="text-white">Contenido</p>
+  </div>
+  <div class="text-white">
+    <Accordion/>
+  </div>
+</section>
+
+<style>
+  h2 {
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+</style>

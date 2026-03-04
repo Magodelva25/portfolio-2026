@@ -1,0 +1,30 @@
+---
+import "../styles/globals.css";
+import ProjectCard from "./UI/projectCard.astro";
+---
+
+<section id="container" class="w-full flex flex-col h-auto bg-black px-5 py-15 ">
+	<div class="flex flex-col justify-end>">
+		<h2 class=" text-white pb-5">Some 
+        <p class="text-[#FCEC00]">projects</p>
+        </h2>
+	    <p class="text-white">
+		See all projects -
+	    </p>	
+	</div>
+    <ProjectCard/>
+	
+</section>
+
+
+
+<style>
+	h2 {
+		font-family: Inter;
+		font-weight: 500;
+		font-size: 3rem;
+		line-height: 1;
+		letter-spacing: -0.05em;
+	}
+
+</style>

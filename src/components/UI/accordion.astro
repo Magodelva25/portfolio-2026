@@ -1,0 +1,89 @@
+---
+interface AccordionItem {
+  title: string;
+  content: string;
+}
+const items: AccordionItem[] = [
+  {
+    title: "Primer item",
+    content: "Contenido del primer acordeón."
+  },
+  {
+    title: "Segundo item",
+    content: "Contenido del segundo acordeón."
+  },
+  {
+    title: "Tercer item",
+    content: "Contenido del tercer acordeón."
+  }
+];
+---
+
+<div class="accordion">
+  {items.map((item) => (
+    <div class="accordion-item">
+      <button
+        class="accordion-trigger"
+        onclick="this.parentElement.classList.toggle('open')"
+      >
+        {item.title}
+        <span class="arrow">⌄</span>
+      </button>
+
+      <div class="accordion-content">
+        {item.content}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    padding: 1rem;
+    background: #f7f7f7;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease;
+  }
+
+  .accordion-trigger:hover {
+    background: #eee;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-item.open .arrow {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1rem;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+
+  .accordion-item.open .accordion-content {
+    max-height: 500px;
+    padding: 1rem;
+  }
+</style>

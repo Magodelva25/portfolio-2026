@@ -1,0 +1,14 @@
+---
+const {
+  title = "Título de la card",
+  text = "Texto de ejemplo",
+} = Astro.props;
+---
+
+<div class="card">
+  <div class="card-content bg-white rounded-2xl w-auto h-auto p-5">
+    <h3>{title}</h3>
+    <p>{text}</p>
+  </div>
+
+  
