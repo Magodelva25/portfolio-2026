@@ -10,18 +10,27 @@ export function getStaticPaths() {
 
 const { project } = Astro.props;
 ---
+<main>
 
-
-  <section class="main-image w-full h-vh">
-    <div 
-      class="w-full h-[768px] bg-center bg-no-repeat bg-cover flex flex-col justify-end p-10"
-      style={`background-image: url('${project.imageUrl}')`}
-    >
-      <h1 class="text-white text-4xl font-bold">{project.titulo}</h1>
-      
+  <section class="relative w-full h-[70vh] overflow-hidden">
+    <div class="relative inset-0 bg-black/40 z-0">
+    <img 
+      src={project.imageUrl} 
+      alt={project.imgAlt}
+      width="100%"
+      height="768px"
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    />
     </div>
+    <div class="absolute z-10 flex flex-col justify-end h-full p-10">
+      <h1 class="text-white text-5xl font-bold drop-shadow-lg">
+        {project.titulo}
+      </h1>
+      <p class="text-white text-lg mt-4 max-w-2xl drop-shadow-md">
+        {project.descripcion}
+      </p>
+    </div>
+
   </section>
 
-  <section class="prose prose-invert px-5 py-10">
-    <p class="text-white text-lg mt-4 max-w-2xl">{project.descripcion}</p>
-  </section>
+</main>
