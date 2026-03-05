@@ -2,11 +2,11 @@
 import "../../styles/globals.css"
 ---
 
-<section id="container" class="w-full h-auto bg-black px-5 pt-30 flex">
-	<div class="flex flex-col justify-end>">
-		<h2 class=" text-white pb-5">Design & Development
-        <p class="text-[#FCEC00]">to takle</p> real world problems</h2>
-	    <p class="description text-white">
+<section id="container" class="h-auto md:h-130 bg-black px-5 pt-30 flex">
+	<div class="flex flex-col w-full>">
+		<h2 class=" text-white pb-5 md:max-w-2/3">Design & Development
+        <span class="text-[#FCEC00]">to takle</span> real world problems</h2>
+	    <p class="description text-white md:max-w-2/3">
 		With experience across design, UX/UI, and web development.
 		I understand the full creative process and enjoy structure, planning, and problem‑solving.
 	    </p>	
@@ -20,7 +20,7 @@ import "../../styles/globals.css"
 	h2 {
 		font-family: Inter;
 		font-weight: 500;
-		font-size: 3rem;
+		font-size: clamp(2rem, 3rem, 4rem);
 		line-height: 1;
 		letter-spacing: -0.05em;
 	}

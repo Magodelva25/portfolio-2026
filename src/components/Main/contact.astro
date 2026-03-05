@@ -2,16 +2,16 @@
 import "../../styles/globals.css"
 ---
 
-<section id="container" class="w-full h-auto bg-black px-5 py-15 flex">
-	<div class="flex flex-col justify-end>">
-		<h2 class=" text-white pb-5">Shall we talk ?</h2>
-	    <span class="text-white">
-		Linkedin
-	    </span>	
-		<span class="text-white">
-		Email
-	    </span>	
-	</div>
+<section id="container" class="w-full h-auto bg-black px-5 pt-30 pb-10 flex justify-between">
+		<h2 class="text-white">Shall we talk ?</h2>
+	    <div class="flex flex-col-reverse items-end">
+			<span class="text-white flex align-bottom">
+			Linkedin
+			</span>	
+			<span class="text-white">
+			Email
+			</span>	
+		</div>
 	
 </section>
 
@@ -21,9 +21,11 @@ import "../../styles/globals.css"
 	h2 {
 		font-family: Inter;
 		font-weight: 500;
-		font-size: 5rem;
+		font-size: clamp(3rem, 6rem, 7rem);
 		line-height: 1;
 		letter-spacing: -0.05em;
+		padding-bottom: 0;
+		margin-bottom: 0;
 	}
 
 </style>
