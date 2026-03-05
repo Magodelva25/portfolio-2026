@@ -1,40 +1,63 @@
 ---
 import Tags from "./tags.astro";
 
-const {
-  title = "Título de la card",
-  text = "Texto de ejemplo",
-} = Astro.props;
+interface projectsProps {
+  fecha: string;
+  cliente: string;
+  imageUrl: string;
+  imgAlt: string;
+  titulo: string;
+  descripcion: string;
+  tags: string[];
+  slugs: string;
+}
+
+const { fecha, cliente, imageUrl, imgAlt, titulo, descripcion, tags, slugs } = Astro.props as projectsProps;
 ---
 
+<a href={`/details/${slugs}`} class="block">
 <div class="h-auto flex-1 md:flex-1 flex-wrap">
   <div class="card-content rounded-2xl w-auto h-auto mt-5 bg-gray-950">
-    <div class="flex w-full h-30 bg-amber-400 rounded-t-2xl"></div>
-    <div class="info-tags w-full flex text-white p-5 font-bold text-[0.8rem]">
-      <span>Fecha</span>
-      <span>-</span>
-      <span>Cliente</span>
-      <span>-</span>
-      <span>Otros</span>
+    
+    <div class="flex w-full h-60 bg-black rounded-t-2xl overflow-hidden">
+      <img 
+        src={imageUrl} 
+        alt={imgAlt} 
+        class="w-full h-full object-cover"
+      />
     </div>
-    <h3 class="card-title flex text-[1.3rem] text-white pb-5 px-5">{title}</h3>
-    <p class="card-description text-[0.8rem] text-white pb-5 px-5">{text}</p>
-    <div class="badge w-fit px-5 pb-5 flex gap-5">
-      <Tags/>
-      <Tags/>
-      <Tags/>
-    </div>
-  </div>
 
+    <div class="info-tags w-full flex text-white p-5 font-italic text-[0.6rem] gap-2">
+      <span>{fecha}</span>
+      <span>-</span>
+      <span>{cliente}</span>
+    </div>
+
+    <h3 class="card-title flex text-[1.5rem] text-white pb-5 px-5">{titulo}</h3>
+
+    <p class="card-description text-[0.8rem] text-white pb-5 px-5">{descripcion}</p>
+
+    <div class="badge w-fit px-5 pb-5 flex gap-5">
+      <div class="flex gap-2 pb-5 flex-wrap">
+        {tags.map((tag, index) => (
+          <Tags key={index} tags={tag} />
+        ))}
+      </div>
+    </div>
+
+  </div>
+</div>
+</a>
 
 <style>
-  .card{
+  .card {
     font-family: Inter;
     font-weight: 200;
   }
-  .card-title{
-    font-style: italic;
+  .card-title {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
   }
-</style>
-
   
+</style>

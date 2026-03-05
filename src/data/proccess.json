@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Research & Definitions",
+    "description": "Understanding the problem, the users, and the product goals before building anything.",
+    "tags": ["product discovery", "user needs", "business goals", "research"]
+  },
+  {
+    "title": "UX/UI Research",
+    "description": "Analyzing user behavior and shaping intuitive flows and interface structures.",
+    "tags": ["user research", "ux strategy", "user flows", "usability"]
+  },
+  {
+    "title": "Prototyping & Validation",
+    "description": "Testing ideas through wireframes and prototypes to validate usability early.",
+    "tags": ["wireframes", "prototypes", "usability testing", "iteration"]
+  },
+  {
+    "title": "Architecture",
+    "description": "Designing the technical foundation, data structure, and scalable system architecture.",
+    "tags": ["system design", "backend architecture", "APIs", "databases"]
+  },
+  {
+    "title": "Development",
+    "description": "Building the product with modern technologies and clean, maintainable code.",
+    "tags": ["nextjs", "typescript", "python", "flask", "full stack"]
+  },
+  {
+    "title": "Delivery",
+    "description": "Deploying, monitoring, and refining the product in real-world environments.",
+    "tags": ["deployment", "CI/CD", "performance", "iteration"]
+  }
+]

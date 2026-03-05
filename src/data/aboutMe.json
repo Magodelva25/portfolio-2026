@@ -1,0 +1,55 @@
+{
+  "based_in": "Spain (remote-friendly)",
+
+  "interests": [
+    "technology and AI",
+    "digital product design",
+    "creative coding",
+    "branding and visual systems",
+    "learning new tools and workflows",
+    "building personal projects"
+  ],
+
+  "hard_skills": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "Flask",
+    "Node.js",
+    "PostgreSQL",
+    "REST APIs",
+    "Microservices",
+    "HTML",
+    "CSS",
+    "Tailwind",
+    "Git",
+    "CI/CD",
+    "Vercel",
+    "Supabase",
+    "Railway",
+    "Firebase",
+    "Docker",
+    "Figma",
+    "UX/UI design",
+    "Wireframing",
+    "Prototyping",
+    "Usability testing",
+    "Branding",
+    "AI-assisted workflows"
+  ],
+
+  "soft_skills": [
+    "problem solving",
+    "creative thinking",
+    "product mindset",
+    "self-learning",
+    "adaptability",
+    "collaboration",
+    "communication",
+    "curiosity",
+    "attention to detail",
+    "user-centered thinking"
+  ]
+}

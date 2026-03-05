@@ -1,65 +1,56 @@
 ---
+import Tags from "./tags.astro";
+
 interface AccordionItem {
   title: string;
-  content: string;
+  description: string;
+  tags: string[];
 }
-const items: AccordionItem[] = [
-  {
-    title: "Primer item",
-    content: "Contenido del primer acordeón."
-  },
-  {
-    title: "Segundo item",
-    content: "Contenido del segundo acordeón."
-  },
-  {
-    title: "Tercer item",
-    content: "Contenido del tercer acordeón."
-  }
-];
+
+const { title, description, tags } = Astro.props as AccordionItem;
 ---
 
 <div class="flex flex-col gap-1">
-  {items.map((item) => (
-    <div class="accordion-item border-b-[0.5px] border-white overflow-hidden">
-      <button
-        class="accordion-button flex justify-between items-center transition-all duration-75 ease-in w-full text-[1rem] p-[1rem] text-white  cursor-pointer hover:bg-white"
-        onclick="this.parentElement.classList.toggle('open')"
-      >
-        {item.title}
-        <span class="arrow transition-transform duration-75 ease-in">⌄</span>
-      </button>
+  <div class="accordion-item border-b-[0.5px] border-white overflow-hidden">
+    <button
+      class="accordion-button flex justify-between items-center transition-all duration-500 ease-in w-full text-[1rem] text-white cursor-pointer py-5"
+      onclick="this.parentElement.classList.toggle('open')"
+    >
+      {title}
+      <span class="arrow transition-transform duration-75 ease-in">+</span>
+    </button>
 
-      <div class="accordion-content max-h-0 overflow-hidden ease-in duration-75 transition:p-5">
-        {item.content}
+    <div class="accordion-content flex flex-col text-white max-h-0 overflow-hidden ease-in duration-75 transition:p-5">
+      <span class="mb-5">{description}</span>
+
+      <div class="flex gap-2 pb-5 flex-wrap">
+        {tags.map((tag, index) => (
+          <Tags key={index} tags={tag} />
+        ))}
       </div>
     </div>
-  ))}
+  </div>
 </div>
 
 <style>
-
-  .accordion-item.open .arrow {
-    transform: rotate(180deg);
-  }
-
-  .accordion-button{
+  .accordion-button {
     font-family: Inter;
     font-weight: 200;
     font-size: 1.8rem;
-
   }
 
-  .accordion-content{
+  .accordion-content {
     font-family: Inter;
     font-weight: 200;
     font-size: 1rem;
-
   }
-
 
   .accordion-item.open .accordion-content {
     max-height: 500px;
     padding: 1rem;
+  }
+
+  .accordion-item.open .arrow {
+    transform: rotate(45deg);
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import "../../styles/globals.css"
 import ProjectCard from "../UI/projectCard.astro";
+import projects from "../../data/projects.json"
 ---
 
 <section id="container" class="w-full flex flex-col h-auto bg-black px-5 pt-30 ">
@@ -8,20 +9,30 @@ import ProjectCard from "../UI/projectCard.astro";
 		<h2 class=" text-white pb-5">Some 
         <p class="text-[#FCEC00]">projects</p>
         </h2>
-		<div class="flex justify-between">
+		<!-- <div class="flex justify-between">
 			<p class="text-white">
 			See all projects
 			</p>
 			<p class="text-white">+</p>	
-		</div>
+		</div> -->
 	</div>
 	<div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-5 pt-10">
-		<ProjectCard/>
-		<ProjectCard/>
-		<ProjectCard/>
-		<ProjectCard/>
-		<ProjectCard/>
-		<ProjectCard/>
+		{
+			projects.map((p, index)=>(
+				<ProjectCard
+					key={index}
+					fecha={p.fecha}
+					cliente={p.cliente}
+					imageUrl={p.imageUrl}
+					imgAlt={p.imgAlt}
+					titulo={p.titulo}
+					descripcion={p.descripcion}
+					tags={p.tags}
+					slugs={p.slug}
+				/>
+
+			))
+		}
 	</div>
 	
 </section>

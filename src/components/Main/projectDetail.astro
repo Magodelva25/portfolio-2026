@@ -1,0 +1,21 @@
+---
+import projects from "../../data/projects.json";
+
+export function getStaticPaths() {
+  return projects.map((p) => ({
+    params: { project: p.slug },
+    props: { project: p }
+  }));
+}
+
+const { project } = Astro.props;
+---
+<main>
+
+  <section class="main-image h-vh">
+    <!-- <h1>{project.titulo}</h1>
+    <p>{project.descripcion}</p> -->
+    <img src={project.imageUrl} alt={project.imgAlt} class="cover" />
+  </section>
+  
+</main>

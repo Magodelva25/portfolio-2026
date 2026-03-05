@@ -1,0 +1,32 @@
+[
+  {
+    "fecha": "2024-11-10",
+    "cliente": "Acme Corp",
+    "imageUrl": "/caroline-badran-bmgF8O95BuU-unsplash.jpg",
+    "imgAlt": "titulo de la imagen",
+    "titulo": "Rediseño de plataforma e-commerce",
+    "descripcion": "Rediseño completo de la experiencia de compra, optimizando el flujo de conversión y mejorando la arquitectura de información.",
+    "tags": ["ux design", "ui design", "ecommerce", "research", "wireframing"],
+    "slug": "acme"
+},
+  {
+    "fecha": "2023-06-02",
+    "cliente": "Fintrack",
+    "imageUrl": "/caroline-badran-bmgF8O95BuU-unsplash.jpg",
+    "imgAlt": "titulo de la imagen",
+    "titulo": "Dashboard financiero para analistas",
+    "descripcion": "Diseño de un panel avanzado para visualizar métricas financieras en tiempo real, con foco en claridad y eficiencia.",
+    "tags": ["data visualization", "dashboard", "product design", "figma", "prototyping"],
+    "slug": "fintrack"
+},
+  {
+    "fecha": "2022-09-18",
+    "cliente": "GreenSteps",
+    "imageUrl": "/caroline-badran-bmgF8O95BuU-unsplash.jpg",
+    "imgAlt": "titulo de la imagen",
+    "titulo": "App de hábitos sostenibles",
+    "descripcion": "Aplicación móvil gamificada para fomentar hábitos ecológicos mediante retos diarios y seguimiento de progreso.",
+    "tags": ["mobile app", "gamification", "sustainability", "user research", "interaction design"],
+    "slug": "greensteps"
+  }
+]
