@@ -1,21 +1,52 @@
 ---
 import "../../styles/globals.css"
----
 
-<section id="container" class="w-full h-auto md:h-140 bg-black px-5 flex">
-	<div class="flex flex-col w-full h-fit self-end relative xl:flex-row xl:justify-between">
-		<h1 class=" text-white text-[3rem] md:text-[4rem] w-2/3">Full Stack Developer 
+
+---
+<div id="mask-layer" class="fixed top-0 w-full h-full">
+<section id="container" class="w-full h-full bg-black px-5 flex overflow-hidden">
+	<picture 
+            id="hero-key" 
+            class="h-30vh scale-125 block overflow-hidden fixed z-0">
+        <img
+            id="logo-simplificado"
+            src="/logo-simple.svg" 
+            alt="logo-simplificado" 
+            class="absolute w-auto h-20 z-10 m-auto inset-0 bg-white" />
+         <img
+            id="logo"
+            src="/logo.svg" 
+            alt="logo" 
+            class="absolute w-auto h-20 z-10 m-auto inset-0 translate-y-10 opacity-0"/>
+        <img
+            id="image-principal"
+            src="/foto-principal.jpg" 
+            alt="foto-principal" 
+            class="w-full h-30vh object-cover grayscale"/>
+       
+    </picture>  
+    
+	<div id="titulo-position" class="flex h-auto w-full relative z-10 self-end justify-between pb-5 translate-y-20">
+		<h1 class=" text-white text-[5rem] w-[60%]">Full Stack Developer 
 		UX/UI Designer</h1>
-		<span class="text-white xl:self-end xl:items-end xl:font-bold xl:text-[1rem]">
+		<span class="flex text-white items-end xl:items-end xl:font-bold xl:text-[1rem]">
 		Based in Spain	
 	</span>	
 	</div>
 	
 </section>
+</div>
 
 
 
 <style>
+	#mask-layer{
+		background: white;
+		mask-image: url("/square.svg");
+		mask-position: center center;
+		mask-repeat: no-repeat;
+		mask-size: 0%;
+	}
 	h1 {
 		font-family: Inter;
 		font-weight: 500;
@@ -24,3 +55,30 @@ import "../../styles/globals.css"
 	}
 
 </style>
+
+<script>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            scrub: 1
+        }
+    });
+
+    tl.to("#mask-layer", { 
+        maskSize: "500%",
+        webkitMaskSize: "500%",
+        duration: 3
+    }).to("#logo", {
+		translateY: -100,
+		opacity: 100,
+	}, "<" 
+	).to("#titulo-position", {
+		translateY: -80,
+		duration: 1
+	}, "<")
+	;
+</script>
