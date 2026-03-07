@@ -1,21 +1,349 @@
 ---
-import NavBar from '../components/Main/navBar.astro';
-import Hero from '../components/Main/Hero.astro';
 import Layout from '../layouts/Layout.astro';
-import Catch from '../components/Main/Catch.astro';
-import Proceso from '../components/Main/Proceso.astro';
-import ProjectsGallery from '../components/Main/ProjectsGallery.astro';
-import About from '../components/Main/about.astro';
-import Contact from '../components/Main/contact.astro';
-
+import Accordion from '../components/UI/accordion.astro';
+import projects from "../data/projects.json";
+import ProjectCard from '../components/UI/projectCard.astro';
+import './../styles/globals.css';
 ---
 
 <Layout>
-	<!-- <NavBar/> -->
-	<Hero />
-	<Catch/>
-	<Proceso/>
-	<ProjectsGallery/>
-	<About/>
-	<Contact/>
+
+<!-- ========================= -->
+<!-- LOADER (fuera del flujo de scroll) -->
+<!-- ========================= -->
+<div id="loader" class="fixed inset-0 bg-black z-[200] flex items-center justify-center">
+    <div class="flex flex-col items-center gap-6">
+        <p id="loader-name" class="text-white text-[1rem] tracking-[0.4em] uppercase opacity-0">
+            Tu Nombre
+        </p>
+        <div class="w-48 h-[1px] bg-white/20 overflow-hidden">
+            <div id="loader-bar" class="h-full bg-[#FCEC00] w-0"></div>
+        </div>
+        <span id="loader-count" class="text-white/40 text-xs tabular-nums">0</span>
+    </div>
+</div>
+
+<!-- ========================= -->
+<!-- INTRO SPACER
+     500vh de alto = "pista" de scroll para la intro.
+     Todos los elementos visuales son fixed, este div
+     solo sirve para que el scroll tenga recorrido.
+<!-- ========================= -->
+<div id="intro-spacer" style="height: 500vh; position: relative;">
+
+    <!-- Fondo negro base -->
+    <div class="fixed inset-0 bg-black z-[10]"></div>
+
+    <!-- Foto con máscara SVG -->
+    <div
+        id="mask-wrapper"
+        class="fixed inset-0 z-[20]"
+        style="mask-image: url('/square.svg'); mask-repeat: no-repeat; mask-position: center center; mask-size: 0%;"
+    >
+        <picture
+            id="hero-key"
+            class="absolute inset-0 overflow-hidden"
+            style="transform: scale(1.25); transform-origin: center center;"
+        >
+            <img
+                src="/foto-principal.jpg"
+                alt="foto-principal"
+                class="w-full h-full object-cover grayscale"
+            />
+        </picture>
+    </div>
+
+    <!-- Overlay negro encima de la foto -->
+    <div id="bg-negro" class="fixed inset-0 bg-black z-[30] opacity-0 pointer-events-none"></div>
+
+    <!-- Logo central -->
+    <div id="logo-center" class="fixed inset-0 z-[40] flex items-center justify-center opacity-0">
+        <p id="logo-name" class="text-white text-[4rem] tracking-[0.5em] uppercase font-light">MIAGO</p>
+    </div>
+
+    <!-- H1 anclado al bottom -->
+    <div
+        id="titulo-position"
+        class="fixed bottom-0 left-0 w-full px-5 pb-10 z-[50] flex justify-between opacity-0"
+        style="transform: translateY(40px);"
+    >
+        <h1 class="text-white w-[60%] leading-none">
+            Full Stack Developer<br />UX/UI Designer
+        </h1>
+        <span class="flex text-white items-end font-bold text-[1rem]">
+            Based in Spain
+        </span>
+    </div>
+
+</div>
+<!-- /intro-spacer -->
+
+
+<!-- ========================= -->
+<!-- SECCIONES DE CONTENIDO -->
+<!-- Empiezan justo después del spacer (500vh) -->
+<!-- ========================= -->
+
+<section class="section h-screen w-full bg-black px-5 flex items-center">
+    <div class="flex flex-col w-full">
+        <h2 class="text-white pb-5">
+            Design & Development
+            <span class="text-[#FCEC00]">to tackle</span> real world problems
+        </h2>
+        <p class="description text-white md:max-w-2/3">
+            With experience across design, UX/UI, and web development.
+            I understand the full creative process and enjoy structure, planning, and problem‑solving.
+        </p>
+    </div>
+</section>
+
+<section class="section h-screen w-full bg-black px-5 pt-30 flex flex-col">
+    <div class="flex flex-col justify-end">
+        <h2 class="text-white pb-5">
+            Here's my <span class="text-[#FCEC00]">process</span>
+        </h2>
+        <p class="description text-white">Let's deep dive into my workflow</p>
+    </div>
+    <div class="text-white py-10">
+        {projects.map((p, index) => (
+            <Accordion key={index} title={p.titulo} description={p.descripcion} tags={p.tags} />
+        ))}
+    </div>
+</section>
+
+<section class="section h-screen w-full bg-black px-5 pt-30 flex flex-col">
+    <div class="flex flex-col justify-end">
+        <h2 class="text-white pb-5">
+            Some <span class="text-[#FCEC00]">projects</span>
+        </h2>
+    </div>
+    <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-10">
+        {projects.map((p, index) => (
+            <ProjectCard
+                key={index}
+                fecha={p.fecha}
+                cliente={p.cliente}
+                imageUrl={p.imageUrl}
+                imgAlt={p.imgAlt}
+                titulo={p.titulo}
+                descripcion={p.descripcion}
+                tags={p.tags}
+                slugs={p.slug}
+            />
+        ))}
+    </div>
+</section>
+
+<section class="section h-screen w-full bg-black px-5 pt-30 flex flex-col">
+    <div class="flex flex-col justify-end">
+        <h2 class="text-[#FCEC00] pb-5">
+            About <span class="text-white">me</span>
+        </h2>
+    </div>
+</section>
+
+<section class="section h-screen w-full bg-black px-5 pt-30 pb-10 flex justify-between">
+    <h2 class="text-white">Shall we talk?</h2>
+    <div class="flex flex-col-reverse items-end">
+        <span class="text-white">LinkedIn</span>
+        <span class="text-white">Email</span>
+    </div>
+</section>
+
 </Layout>
+
+<style>
+    html {
+        overflow-x: hidden;
+    }
+
+    /* Bloquea scroll mientras carga */
+    body.is-loading {
+        overflow: hidden;
+    }
+
+    .section {
+        position: relative;
+        width: 100%;
+    }
+
+    h1, h2, span, p {
+        font-family: Inter, sans-serif;
+    }
+
+    h1 {
+        font-size: clamp(3rem, 5vw, 5rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+    }
+
+    h2 {
+        font-weight: 500;
+        font-size: clamp(3rem, 6vw, 7rem);
+        line-height: 1;
+        letter-spacing: -0.05em;
+    }
+
+    .description {
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    #logo-name{
+        font-family: Inter;
+        font-weight: 700;
+    }
+</style>
+
+<script>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ─── HELPER: actualiza mask-size ───────────────────────── */
+const maskWrapper = document.getElementById("mask-wrapper") as HTMLElement;
+function setMaskSize(pct: number) {
+    if (maskWrapper) maskWrapper.style.maskSize = `${pct}%`;
+}
+
+/* ─── Bloquear scroll durante el loader ─────────────────── */
+document.body.classList.add("is-loading");
+
+/* ============================================================
+   LOADER (auto-play, no scrub)
+   Al terminar desbloquea el scroll y construye la intro.
+============================================================ */
+const loaderTl = gsap.timeline({ onComplete: onLoaderComplete });
+
+loaderTl
+    .to("#loader-name", { opacity: 1, duration: 0.4, ease: "power2.out" })
+    .to("#loader-bar",  { width: "100%", duration: 1.2, ease: "power1.inOut" }, "<")
+    .to({}, {
+        duration: 1.2,
+        ease: "power1.inOut",
+        onUpdate: function () {
+            const el = document.getElementById("loader-count");
+            if (el) el.textContent = String(Math.round(this.progress() * 100));
+        }
+    }, "<")
+    .to({}, { duration: 0.2 })
+    .to("#loader", {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.in",
+        onComplete: () => {
+            const loader = document.getElementById("loader");
+            if (loader) loader.style.display = "none";
+        }
+    });
+
+/* ============================================================
+   DESPUÉS DEL LOADER
+============================================================ */
+function onLoaderComplete() {
+    document.body.classList.remove("is-loading");
+    buildIntroTimeline();
+    buildSectionAnimations();
+}
+
+/* ============================================================
+   INTRO TIMELINE — SCRUBABLE
+   ┌───────────────────────────────────────────────────────┐
+   │  Trigger: #intro-spacer  (start: top top / end: bottom bottom)
+   │  Total de "unidades" en el timeline: 10
+   │
+   │  0 ──── 2   Máscara abre (0%→160%) + zoom-out foto
+   │  2 ──── 3   Logo fade-in
+   │  3 ──── 4.5 Logo pausa visible
+   │  3.5 ── 4.5 Logo fade-out + sube
+   │  4.5 ── 6.5 Foto degrada (overlay negro)
+   │  5 ──── 7   H1 sube + aparece  (solapado)
+   │  7 ──── 10  Pausa → usuario listo para seguir scrollando
+   └───────────────────────────────────────────────────────┘
+============================================================ */
+function buildIntroTimeline() {
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#intro-spacer",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.2,
+            // markers: true,  // ← descomentar para debug
+        }
+    });
+
+    // Fase 1 — Máscara abre + zoom-out de la foto
+    tl.to({}, {
+        duration: 2,
+        ease: "power2.inOut",
+        onUpdate: function () {
+            setMaskSize(this.progress() * 160);
+        }
+    }, 0);
+
+    tl.to("#hero-key", {
+        scale: 1,
+        duration: 2,
+        ease: "Circ.out",
+    }, 0);
+
+    // Fase 2 — Logo aparece en el centro
+    tl.to("#logo-center", {
+        opacity: 1,
+        duration: 1,
+        ease: "Circ.out",
+    }, 2);
+
+    // Fase 3 — Logo desaparece (sube)
+    tl.to("#logo-center", {
+        opacity: 0,
+        y: -30,
+        duration: 1,
+        ease: "Circ.in",
+    }, 3.5);
+
+    // Fase 4 — Foto degrada a negro
+    tl.to("#bg-negro", {
+        opacity: 1,
+        duration: 2,
+        ease: "Circ.inOut",
+    }, 4.5);
+
+    // Fase 5 — H1 sube y aparece (solapado con el fade negro)
+    tl.to("#titulo-position", {
+        opacity: 1,
+        y: 0,
+        duration: 2,
+        ease: "Circ.out",
+    }, 5);
+
+    // Pausa final con H1 visible
+    tl.to({}, { duration: 3 }, 7);
+}
+
+/* ============================================================
+   SECCIONES DE CONTENIDO
+   toggleActions: "play none none reverse"
+   → se anima al entrar Y se desmonta al volver a subir
+============================================================ */
+function buildSectionAnimations() {
+    const sections = document.querySelectorAll<HTMLElement>(".section");
+
+    sections.forEach((section) => {
+        gsap.from(section, {
+            opacity: 0,
+            y: 50,
+            duration: 0.9,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: section,
+                start: "top 85%",
+                end: "top 40%",
+                toggleActions: "play none none reverse",
+            }
+        });
+    });
+}
+</script>
