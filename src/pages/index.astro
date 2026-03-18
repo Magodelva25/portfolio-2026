@@ -21,57 +21,61 @@ import './../styles/globals.css';
     </div>
 </div>
 
-<!-- ===================== INTRO SPACER ===================== -->
-<div id="intro-spacer" style="height: 500vh; position: relative;">
+<!-- ===================== WRAPPER GLOBAL ===================== -->
+<!-- 500vh intro + 5 secciones × 100vh transición = 1000vh total -->
+<div id="sections-wrapper" style="height: 1000vh; position: relative;">
 
-    <!-- Fondo negro base -->
-    <div class="fixed inset-0 bg-black z-10"></div>
+    <!-- INTRO — sticky con z-index más bajo, las secciones lo tapan -->
+    <div id="intro-spacer" class="sticky top-0 h-screen w-full" style="z-index: 5;">
 
-    <!-- Foto con máscara SVG -->
-    <div
-        id="mask-wrapper"
-        class="fixed inset-0 z-20"
-        style="mask-image: url('/square.svg'); mask-repeat: no-repeat; mask-position: center center; mask-size: 0%;"
-    >
-        <picture
-            id="hero-key"
-            class="absolute inset-0 overflow-hidden"
-            style="transform: scale(1.25); transform-origin: center center;"
+        <!-- Fondo negro base -->
+        <div class="fixed inset-0 bg-black z-10"></div>
+
+        <!-- Foto con máscara SVG -->
+        <div
+            id="mask-wrapper"
+            class="fixed inset-0 z-20"
+            style="mask-image: url('/square.svg'); mask-repeat: no-repeat; mask-position: center center; mask-size: 0%;"
         >
-            <img
-                src="/foto-principal.jpg"
-                alt="foto-principal"
-                class="w-full h-full object-cover grayscale"
-            />
-        </picture>
+            <picture
+                id="hero-key"
+                class="absolute inset-0 overflow-hidden"
+                style="transform: scale(1.25); transform-origin: center center;"
+            >
+                <img
+                    src="/foto-principal.jpg"
+                    alt="foto-principal"
+                    class="w-full h-full object-cover grayscale"
+                />
+            </picture>
+        </div>
+
+        <!-- Overlay negro encima de la foto -->
+        <div id="bg-negro" class="fixed inset-0 bg-black z-30 opacity-0 pointer-events-none"></div>
+
+        <!-- Logo central -->
+        <div id="logo-center" class="fixed inset-0 z-40 flex items-center justify-center opacity-0">
+            <p id="logo-name" class="text-white text-[4rem] tracking-[0.5em] uppercase font-light">MIAGO</p>
+        </div>
+
+        <!-- H1 anclado al bottom -->
+        <div
+            id="title-wrapper"
+            class="fixed bottom-5 left-0 w-full px-5 pb-10 z-50 flex justify-between"
+        >
+            <h1 id="title" class="text-white w-[60%] leading-none opacity-0">
+                Full Stack Developer<br />UX/UI Designer
+            </h1>
+            <span id="location" class="flex text-white items-end font-bold text-[1rem] opacity-0">
+                Based in Spain
+            </span>
+        </div>
+
     </div>
 
-    <!-- Overlay negro encima de la foto -->
-    <div id="bg-negro" class="fixed inset-0 bg-black z-30 opacity-0 pointer-events-none"></div>
+    <!-- ===================== SECCIONES ===================== -->
 
-    <!-- Logo central -->
-    <div id="logo-center" class="fixed inset-0 z-40 flex items-center justify-center opacity-0">
-        <p id="logo-name" class="text-white text-[4rem] tracking-[0.5em] uppercase font-light">MIAGO</p>
-    </div>
-
-    <!-- H1 anclado al bottom — sin transform inline, GSAP lo maneja -->
-    <div
-        id="title-wrapper"
-        class="fixed bottom-5 left-0 w-full px-5 pb-10 z-50 flex justify-between"
-    >
-        <h1 id="title" class="text-white w-[60%] leading-none opacity-0">
-            Full Stack Developer<br />UX/UI Designer
-        </h1>
-        <span id="location" class="flex text-white items-end font-bold text-[1rem] opacity-0">
-            Based in Spain
-        </span>
-    </div>
-
-</div>
-
-<div id="sections-wrapper" style="height: 600vh; position: relative;">
-
-    <section id="about" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center" style="z-index: 20;">
+    <section id="about" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center" style="z-index: 10;">
         <div class="flex flex-col w-full">
             <h2 class="text-white pb-5">
                 Design & Development
@@ -163,7 +167,7 @@ import './../styles/globals.css';
         overflow: hidden;
     }
 
-    /* CRÍTICO: no poner position aquí, interfiere con sticky de Tailwind */
+    /* CRÍTICO: sin position aquí, interferiría con sticky de Tailwind */
     .section {
         width: 100%;
     }
@@ -213,7 +217,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // =========================
 // SPLIT TEXT — carácter por carácter
-// Respeta nodos de texto plano y spans con color (ej. amarillo)
+// Respeta spans con color (ej. amarillo)
 // =========================
 
 function splitToChars(selector: string) {
@@ -236,7 +240,6 @@ function splitToChars(selector: string) {
             } else if (node.nodeType === Node.ELEMENT_NODE) {
                 const elem = node as HTMLElement;
                 const text = elem.textContent || "";
-                // wrapper para mantener el salto de línea implícito del span
                 const wrapper = document.createElement("span");
                 wrapper.style.display = "inline";
                 text.split("").forEach(char => {
@@ -245,7 +248,6 @@ function splitToChars(selector: string) {
                     span.style.display = "inline-block";
                     span.style.opacity = "0";
                     span.style.transform = "translateY(14px)";
-                    // Copia clases de color (text-[#FCEC00] etc.)
                     elem.classList.forEach(c => span.classList.add(c));
                     wrapper.appendChild(span);
                 });
@@ -273,7 +275,7 @@ function animateChars(sectionEl: HTMLElement) {
     });
 }
 
-// Aplica split antes de cualquier animación
+// Split antes de cualquier animación
 splitToChars(".section h2");
 
 // =========================
@@ -292,7 +294,6 @@ const introTL = gsap.timeline({
     onComplete: () => {
         document.body.classList.remove("is-loading");
 
-        // Muestra el scroll indicator con entrada suave
         gsap.to("#scroll-indicator", {
             opacity: 1,
             y: 0,
@@ -300,9 +301,9 @@ const introTL = gsap.timeline({
             ease: "power2.out"
         });
 
-        // Oculta el indicator al primer scroll real
+        // Oculta el indicator al primer scroll
         ScrollTrigger.create({
-            trigger: "#intro-spacer",
+            trigger: "#sections-wrapper",
             start: "top+=100 top",
             onEnter:     () => gsap.to("#scroll-indicator", { opacity: 0, duration: 0.4 }),
             onLeaveBack: () => gsap.to("#scroll-indicator", { opacity: 1, duration: 0.4 }),
@@ -339,14 +340,15 @@ introTL
 
 // =========================
 // SCROLL INTRO TIMELINE
-// Controlado por scroll dentro del #intro-spacer (500vh)
+// El wrapper mide 1000vh. El intro ocupa los primeros 500vh = 50%.
+// end: "50% top" significa "cuando el 50% del wrapper haya pasado el top del viewport"
 // =========================
 
 const scrollTL = gsap.timeline({
     scrollTrigger: {
-        trigger: "#intro-spacer",
+        trigger: "#sections-wrapper",
         start: "top top",
-        end: "bottom top",
+        end: "50% top",
         scrub: true,
     }
 });
@@ -359,44 +361,34 @@ scrollTL
     .to("#logo-center", { opacity: 0, y: -30, duration: 1 })
     .to("#bg-negro",    { opacity: 1, duration: 2 })
     .fromTo("#title",    { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 2 }, "<")
-    .fromTo("#location", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 2 }, "<");
-
-// Title y location salen al FINAL del intro-spacer, antes de que empiece el stack
-gsap.to("#title, #location", {
-    scrollTrigger: {
-        trigger: "#intro-spacer",
-        start: "85% top",     // empieza a salir en el 85% del spacer
-        end: "bottom top",    // termina cuando el spacer abandona el viewport
-        scrub: true,
-    },
-    y: -80,
-    opacity: 0,
-});
+    .fromTo("#location", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 2 }, "<")
+    // Title y location salen justo antes de que #about lo tape
+    .to("#title, #location", { opacity: 0, y: -80, duration: 0.8 });
 
 // =========================
 // STACK ENTRY
-// Cada sección entra desde ligeramente abajo (z-index ascendente en HTML)
+// Cada sección entra desde abajo con scrub
 // =========================
 
 const sections = gsap.utils.toArray<HTMLElement>(".section");
 
 sections.forEach((section, i) => {
-    // Anima chars del h2 de cada sección
+    // Anima los chars del h2
     animateChars(section);
 
-    // La primera sección no necesita animación de entrada
+    // La primera sección (#about) no necesita animación de entrada
     if (i === 0) return;
 
     gsap.fromTo(section,
-        { yPercent: 4, opacity: 0 },
+        { yPercent: 4, opacity: 0.1 },
         {
             yPercent: 0,
             opacity: 1,
             ease: "none",
             scrollTrigger: {
                 trigger: section,
-                start: "top bottom",  // cuando el top de la sección toca el bottom del viewport
-                end: "top top",       // cuando está completamente asentada
+                start: "top bottom",
+                end: "top top",
                 scrub: true,
             }
         }
