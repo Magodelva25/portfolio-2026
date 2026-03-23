@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Accordion from '../components/UI/accordion.astro';
 import projects from "../data/projects.json";
+import proccess from "../data/proccess.json";
 import ProjectCard from '../components/UI/projectCard.astro';
 import './../styles/globals.css';
 ---
@@ -9,7 +10,7 @@ import './../styles/globals.css';
 <Layout>
 
 <!-- ===================== LOADER ===================== -->
-<div id="loader" class="fixed inset-0 bg-black z-200 flex items-center justify-center">
+<!-- <div id="loader" class="fixed inset-0 bg-black z-200 flex items-center justify-center">
     <div class="flex flex-col items-center gap-6">
         <p id="loader-name" class="text-white text-[1rem] tracking-[0.4em] uppercase opacity-0">
             Tu Nombre
@@ -19,27 +20,22 @@ import './../styles/globals.css';
         </div>
         <span id="loader-count" class="text-white/40 text-xs tabular-nums">0</span>
     </div>
-</div>
+</div> -->
 
 <!-- ===================== WRAPPER GLOBAL ===================== -->
-<!-- 500vh intro + 5 secciones × 100vh transición = 1000vh total -->
-<div id="sections-wrapper" style="height: 1000vh; position: relative;">
+
+<div id="sections-wrapper" class="relative h-auto overflow-hidden">
 
     <!-- INTRO — sticky con z-index más bajo, las secciones lo tapan -->
     <div id="intro-spacer" class="sticky top-0 h-screen w-full" style="z-index: 5;">
 
-        <!-- Fondo negro base -->
-        <div class="fixed inset-0 bg-black z-10"></div>
-
         <!-- Foto con máscara SVG -->
         <div
             id="mask-wrapper"
-            class="fixed inset-0 z-20"
-            style="mask-image: url('/square.svg'); mask-repeat: no-repeat; mask-position: center center; mask-size: 0%;"
         >
             <picture
                 id="hero-key"
-                class="absolute inset-0 overflow-hidden"
+                class="sticky inset-0 overflow-hidden"
                 style="transform: scale(1.25); transform-origin: center center;"
             >
                 <img
@@ -50,9 +46,6 @@ import './../styles/globals.css';
             </picture>
         </div>
 
-        <!-- Overlay negro encima de la foto -->
-        <div id="bg-negro" class="fixed inset-0 bg-black z-30 opacity-0 pointer-events-none"></div>
-
         <!-- Logo central -->
         <div id="logo-center" class="fixed inset-0 z-40 flex items-center justify-center opacity-0">
             <p id="logo-name" class="text-white text-[4rem] tracking-[0.5em] uppercase font-light">MIAGO</p>
@@ -61,12 +54,12 @@ import './../styles/globals.css';
         <!-- H1 anclado al bottom -->
         <div
             id="title-wrapper"
-            class="fixed bottom-5 left-0 w-full px-5 pb-10 z-50 flex justify-between"
+            class="fixed bottom-5 left-0 w-full px-5 pb-9 z-50 flex justify-between"
         >
-            <h1 id="title" class="text-white w-[60%] leading-none opacity-0">
+            <h1 id="title" class="text-white w-[60%] leading-none">
                 Full Stack Developer<br />UX/UI Designer
             </h1>
-            <span id="location" class="flex text-white items-end font-bold text-[1rem] opacity-0">
+            <span id="location" class="flex text-white items-end font-bold text-[1rem]">
                 Based in Spain
             </span>
         </div>
@@ -76,7 +69,7 @@ import './../styles/globals.css';
     <!-- ===================== SECCIONES ===================== -->
 
     <section id="about" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center" style="z-index: 10;">
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col w-2/3">
             <h2 class="text-white pb-5">
                 Design & Development
                 <span class="text-[#FCEC00]">to tackle</span> real world problems
@@ -88,21 +81,21 @@ import './../styles/globals.css';
         </div>
     </section>
 
-    <section id="proccess" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center" style="z-index: 20;">
+    <section id="proccess" class="section sticky top-0 h-192 w-full bg-black px-5 flex items-center" style="z-index: 20;">
         <div class="flex flex-col w-full">
             <h2 class="text-white pb-5">
                 Here's my <span class="text-[#FCEC00]">process</span>
             </h2>
             <p class="description text-white">Let's deep dive into my workflow</p>
             <div class="text-white py-10">
-                {projects.map((p, index) => (
-                    <Accordion key={index} title={p.titulo} description={p.descripcion} tags={p.tags} />
+                {proccess.map((p, index) => (
+                    <Accordion key={index} title={p.title} description={p.description} tags={p.tags} />
                 ))}
             </div>
         </div>
     </section>
 
-    <section id="projects" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center" style="z-index: 30;">
+    <section id="projects" class="section sticky top-0 h-250 w-full bg-black px-5 flex items-center" style="z-index: 30;">
         <div class="flex flex-col w-full">
             <h2 class="text-white pb-5">
                 Some <span class="text-[#FCEC00]">projects</span>
@@ -125,7 +118,7 @@ import './../styles/globals.css';
         </div>
     </section>
 
-    <section id="about-me" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center" style="z-index: 40;">
+    <section id="about-me" class="section sticky top-0 h-192 w-full bg-black px-5 flex items-center" style="z-index: 40;">
         <div class="flex flex-col w-full">
             <h2 class="pb-5">
                 <span class="text-[#FCEC00]">About</span>
@@ -134,9 +127,9 @@ import './../styles/globals.css';
         </div>
     </section>
 
-    <section id="contact" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center justify-between" style="z-index: 50;">
-        <h2 class="text-white">Shall we talk?</h2>
-        <div class="flex flex-col-reverse items-end gap-2">
+    <section id="contact" class="section sticky top-0 h-screen w-full bg-black px-5 flex items-center justify-between pb-10 z-50">
+        <h2 class="contact-title text-white self-end text-6xl w-2/3 wrap-break">Shall we talk?</h2>
+        <div class="flex flex-col-reverse items-end gap-2 self-end">
             <span class="text-white">LinkedIn</span>
             <span class="text-white">Email</span>
         </div>
@@ -184,9 +177,12 @@ import './../styles/globals.css';
 
     h2 {
         font-weight: 500;
-        font-size: clamp(3rem, 6vw, 7rem);
+        font-size: clamp(3rem, 6vw, 10rem);
         line-height: 1;
         letter-spacing: -0.05em;
+    }
+    .contact-title{
+        font-size: clamp(8rem, 15vw, 15rem);
     }
 
     .description {
@@ -200,198 +196,7 @@ import './../styles/globals.css';
         font-weight: 700;
     }
 
-    @keyframes scrollLine {
-        0%   { transform: translateY(-100%); }
-        100% { transform: translateY(100%); }
-    }
-    .animate-scroll-line {
-        animation: scrollLine 1.4s ease-in-out infinite;
-    }
 </style>
 
 <script>
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-// =========================
-// SPLIT TEXT — carácter por carácter
-// Respeta spans con color (ej. amarillo)
-// =========================
-
-function splitToChars(selector: string) {
-    const els = document.querySelectorAll<HTMLElement>(selector);
-    els.forEach(el => {
-        const nodes = Array.from(el.childNodes);
-        el.innerHTML = "";
-
-        nodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE) {
-                const text = node.textContent || "";
-                text.split("").forEach(char => {
-                    const span = document.createElement("span");
-                    span.textContent = char === " " ? "\u00A0" : char;
-                    span.style.display = "inline-block";
-                    span.style.opacity = "0";
-                    span.style.transform = "translateY(14px)";
-                    el.appendChild(span);
-                });
-            } else if (node.nodeType === Node.ELEMENT_NODE) {
-                const elem = node as HTMLElement;
-                const text = elem.textContent || "";
-                const wrapper = document.createElement("span");
-                wrapper.style.display = "inline";
-                text.split("").forEach(char => {
-                    const span = document.createElement("span");
-                    span.textContent = char === " " ? "\u00A0" : char;
-                    span.style.display = "inline-block";
-                    span.style.opacity = "0";
-                    span.style.transform = "translateY(14px)";
-                    elem.classList.forEach(c => span.classList.add(c));
-                    wrapper.appendChild(span);
-                });
-                el.appendChild(wrapper);
-            }
-        });
-    });
-}
-
-function animateChars(sectionEl: HTMLElement) {
-    const chars = sectionEl.querySelectorAll<HTMLElement>("h2 span");
-    if (!chars.length) return;
-
-    gsap.to(chars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.025,
-        stagger: 0.022,
-        ease: "none",
-        scrollTrigger: {
-            trigger: sectionEl,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-        }
-    });
-}
-
-// Split antes de cualquier animación
-splitToChars(".section h2");
-
-// =========================
-// LOADER + INTRO AUTOMÁTICO
-// =========================
-
-const maskWrapper = document.getElementById("mask-wrapper");
-
-function setMaskSize(pct: number) {
-    if (maskWrapper) maskWrapper.style.maskSize = `${pct}%`;
-}
-
-document.body.classList.add("is-loading");
-
-const introTL = gsap.timeline({
-    onComplete: () => {
-        document.body.classList.remove("is-loading");
-
-        gsap.to("#scroll-indicator", {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out"
-        });
-
-        // Oculta el indicator al primer scroll
-        ScrollTrigger.create({
-            trigger: "#sections-wrapper",
-            start: "top+=100 top",
-            onEnter:     () => gsap.to("#scroll-indicator", { opacity: 0, duration: 0.4 }),
-            onLeaveBack: () => gsap.to("#scroll-indicator", { opacity: 1, duration: 0.4 }),
-        });
-    }
-});
-
-introTL
-    .to("#loader-name", { opacity: 1, duration: 0.4 })
-    .to("#loader-bar",  { width: "100%", duration: 1.2 }, "<")
-    .to({}, {
-        duration: 1.2,
-        onUpdate() {
-            const el = document.getElementById("loader-count");
-            if (el) el.textContent = String(Math.round(this.progress() * 100));
-        }
-    }, "<")
-    .to("#loader", {
-        opacity: 0,
-        duration: 0.5,
-        onComplete: () => {
-            const loader = document.getElementById("loader");
-            if (loader) loader.style.display = "none";
-        }
-    })
-    .to("#hero-key", { scale: 1, duration: 2, ease: "circ.out" }, "<")
-    .to({}, {
-        duration: 2,
-        ease: "power2.inOut",
-        onUpdate() {
-            setMaskSize(this.progress() * 160);
-        }
-    }, 0);
-
-// =========================
-// SCROLL INTRO TIMELINE
-// El wrapper mide 1000vh. El intro ocupa los primeros 500vh = 50%.
-// end: "50% top" significa "cuando el 50% del wrapper haya pasado el top del viewport"
-// =========================
-
-const scrollTL = gsap.timeline({
-    scrollTrigger: {
-        trigger: "#sections-wrapper",
-        start: "top top",
-        end: "50% top",
-        scrub: true,
-    }
-});
-
-scrollTL
-    .fromTo("#logo-center",
-        { opacity: 0, y: 0 },
-        { opacity: 1, duration: 1 }
-    )
-    .to("#logo-center", { opacity: 0, y: -30, duration: 1 })
-    .to("#bg-negro",    { opacity: 1, duration: 2 })
-    .fromTo("#title",    { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 2 }, "<")
-    .fromTo("#location", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 2 }, "<")
-    // Title y location salen justo antes de que #about lo tape
-    .to("#title, #location", { opacity: 0, y: -80, duration: 0.8 });
-
-// =========================
-// STACK ENTRY
-// Cada sección entra desde abajo con scrub
-// =========================
-
-const sections = gsap.utils.toArray<HTMLElement>(".section");
-
-sections.forEach((section, i) => {
-    // Anima los chars del h2
-    animateChars(section);
-
-    // La primera sección (#about) no necesita animación de entrada
-    if (i === 0) return;
-
-    gsap.fromTo(section,
-        { yPercent: 4, opacity: 0.1 },
-        {
-            yPercent: 0,
-            opacity: 1,
-            ease: "none",
-            scrollTrigger: {
-                trigger: section,
-                start: "top bottom",
-                end: "top top",
-                scrub: true,
-            }
-        }
-    );
-});
 </script>
