@@ -1,0 +1,40 @@
+---
+import Tags from "./tags.astro";
+
+interface ProcessProps {
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+const { title, description, tags } = Astro.props as ProcessProps;
+
+---
+
+<div class="h-fit flex-1 md:flex-1 flex-wrap ">
+  <div class="card-content rounded-2xl w-auto h-auto bg-gray-950 p-10">
+    <h3 class="card-title flex text-[1.5rem] text-white pb-5 ">{title}</h3>
+    <p class="card-description text-[0.8rem] text-white pb-5 ">{description}</p>
+    <div class="badge w-fit flex">
+      <div class="flex gap-3 flex-wrap">
+        {tags.map((tag, index) => (
+          <Tags key={index} tags={tag} />
+        ))}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .card {
+    font-family: Inter;
+    font-weight: 200;
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  
+</style>
