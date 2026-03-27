@@ -21,33 +21,11 @@ import './../styles/globals.css';
         <span id="loader-count" class="text-white/40 text-xs tabular-nums">0</span>
     </div>
 </div> -->
-
-<!-- ===================== WRAPPER GLOBAL ===================== -->
-    <div id="intro-spacer" class="relative top-0 h-screen w-full z-5">
-        <div
-            id="mask-wrapper"
-        >
-            <picture
-                id="hero-key"
-                class="fixed inset-0 overflow-hidden"
-                style="transform: scale(1.25); transform-origin: center center;"
-            >
-                <img
-                    src="/foto-principal.jpg"
-                    alt="foto-principal"
-                    class="w-full h-full object-cover grayscale"
-                />
-            </picture>
-        </div>
-
-        <!-- Logo central -->
-        <div id="logo-center" class="fixed inset-0 z-40 flex items-center justify-center opacity-0">
-            <p id="logo-name" class="text-white text-[4rem] tracking-[0.5em] uppercase font-light">MIAGO</p>
-        </div>
-
-        <div
+<main id="container">
+    <section id="hero" class="section absolute top-0 h-screen rounded-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-60 bg-[url('/foto-principal.jpg')] bg-cover bg-center grayscale-100">
+    <div
             id="title-wrapper"
-            class="fixed bottom-5 left-0 w-full px-5 pb-9 z-50 flex justify-between"
+            class="fixed bottom-0 left-0 w-full px-5 pb-9 z-50 flex justify-between opacity-100"
         >
             <h1 id="title" class="text-white w-[60%] leading-none">
                 Full Stack Developer<br />UX/UI Designer
@@ -55,11 +33,9 @@ import './../styles/globals.css';
             <span id="location" class="flex text-white items-end font-bold text-[1rem]">
                 Based in Spain
             </span>
-        </div>
-
     </div>
-
-    <section id="about" class="section sticky top-0 h-screen rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-10">
+    </section>
+    <section id="about" class="section absolute top-0 h-screen rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-50">
         <div class="flex flex-col w-2/3">
             <h2 class="text-white pb-5">
                 Design & Development
@@ -71,8 +47,7 @@ import './../styles/globals.css';
             </p>
         </div>
     </section>
-
-    <section id="proccess" class="section relative top-0 h-250 w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-20">
+    <section id="proccess" class="section absolute top-0 h-250 w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-40">
         <div class="flex flex-col w-full z-20">
             <h2 class="text-white pb-5">
                 Here's my <span class="text-[#FCEC00]">process</span>
@@ -92,8 +67,7 @@ import './../styles/globals.css';
             </div>
         </div>
     </section>
-
-    <section id="projects" class="section relative top-0 h-auto w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pb-20 mb-20 flex z-30"> 
+    <section id="projects" class="section absolute top-0 h-auto w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pb-20 mb-20 flex z-30"> 
         <div class="flex flex-col w-full">
             <h2 class="text-white pt-20">
                 Some <span class="text-[#FCEC00]">projects</span>
@@ -115,8 +89,7 @@ import './../styles/globals.css';
             </div>
         </div>
     </section>
-
-    <section id="about-me" class="section sticky top-0 h-220 w-full rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 flex items-center z-40"
+    <section id="about-me" class="section absolute top-0 h-220 w-full rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 flex items-center z-20">
         <div class="flex flex-col w-full">
             <h2 class="pb-5">
                 <span class="text-[#FCEC00]">About</span>
@@ -124,16 +97,14 @@ import './../styles/globals.css';
             </h2>
         </div>
     </section>
-
-    <section id="contact" class="section sticky top-0 h-192 w-full rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 items-center justify-between pb-10 z-50">
+    <section id="contact" class="section absolute top-0 h-192 w-full rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 items-center justify-between pb-10 z-10">
         <h2 class="contact-title text-white self-end text-6xl w-2/3 wrap-break fixed bottom-5 z-50">Shall we talk ?</h2>
         <div class="flex flex-col-reverse items-end gap-2 self-end align-bottom z-50">
             <span class="text-white">LinkedIn</span>
             <span class="text-white">Email</span>
         </div>
     </section>
-
-<div
+    <div
     id="scroll-indicator"
     class="fixed bottom-8 z-100 flex flex-col items-center gap-2 opacity-0"
     style="left: 50%; transform: translateX(-50%) translateY(10px);"
@@ -142,8 +113,8 @@ import './../styles/globals.css';
     <div class="overflow-hidden relative" style="width:1px; height: 40px; background: rgba(255,255,255,0.2)">
         <div class="absolute top-0 left-0 w-full h-full bg-[#FCEC00] animate-scroll-line"></div>
     </div>
-</div>
-
+    </div>
+</main>
 </Layout>
 
 <style>
@@ -189,4 +160,61 @@ import './../styles/globals.css';
 </style>
 
 <script>
+
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+const tl = gsap
+.timeline()
+.to("#hero", {
+    top: "-100vh",
+    delay: "1",
+    duration: "1",
+    ease: "circ.out",
+})
+.from("#title", {
+  opacity: 1,
+  y: 50,
+  duration: 1
+}, "<")
+.to("#about", {
+    top: "-100vh",
+    delay: "1",
+    duration: "2",
+    ease: "circ.out"
+})
+.to("#proccess", {
+    left: "-150vw",
+    delay: "1",
+    duration: "2",
+    ease: "circ.out"
+})
+.to("#projects", {
+    top: "-150vh",
+    delay: "1",
+    duration: "2",
+    ease: "circ.out"
+})
+.to("#about-me", {
+    top: "-100vh",
+    delay: "1",
+    duration: "2",
+    ease: "circ.out"
+})
+
+ScrollTrigger.create({
+    animation: tl,
+    trigger: "#container",
+    start: "top top",
+    end: "+=10000",
+    scrub: true,
+    pin: true
+})
+
+
+
+    
 </script>
