@@ -12,17 +12,19 @@ const { project } = Astro.props;
 ---
 <main>
 
-  <section class="relative w-full h-[70vh] overflow-hidden">
-    <div class="relative inset-0 bg-black/40 z-0">
+  <article
+    class="mx-auto max-w-5xl rounded-2xl bg-gray-950 overflow-hidden"
+    transition:name={`project-${project.slug}`}
+  >
     <img 
       src={project.imageUrl} 
       alt={project.imgAlt}
       width="100%"
-      height="768px"
-      class="absolute inset-0 w-full h-full object-cover z-0"
+      height="768"
+      class="w-full h-auto object-cover"
     />
-    </div>
-    <div class="absolute z-10 flex flex-col justify-end h-full p-10">
+
+    <div class="p-10">
       <h1 class="text-white text-5xl font-bold drop-shadow-lg">
         {project.titulo}
       </h1>
@@ -30,7 +32,6 @@ const { project } = Astro.props;
         {project.descripcion}
       </p>
     </div>
-
-  </section>
+  </article>
 
 </main>

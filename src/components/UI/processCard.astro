@@ -8,13 +8,16 @@ interface ProcessProps {
 }
 
 const { title, description, tags } = Astro.props as ProcessProps;
-
 ---
 
-<div class="h-fit flex-1 md:flex-1 flex-wrap ">
-  <div class="card-content rounded-2xl w-auto h-auto bg-gray-950 p-10">
-    <h3 class="card-title flex text-[1.5rem] text-white pb-5 ">{title}</h3>
-    <p class="card-description text-[0.8rem] text-white pb-5 ">{description}</p>
+<div class="h-fit flex-1 md:flex-1 flex-wrap">
+  <div 
+    class="card-content rounded-2xl w-auto h-auto bg-gray-950 p-10 border-[0.5px] border-white"
+    data-random-rotate
+  >
+    <h3 class="card-title flex text-[1.5rem] text-white pb-5">{title}</h3>
+    <p class="card-description text-[0.8rem] text-white pb-5">{description}</p>
+
     <div class="badge w-fit flex">
       <div class="flex gap-3 flex-wrap">
         {tags.map((tag, index) => (
@@ -22,7 +25,6 @@ const { title, description, tags } = Astro.props as ProcessProps;
         ))}
       </div>
     </div>
-
   </div>
 </div>
 
@@ -36,5 +38,12 @@ const { title, description, tags } = Astro.props as ProcessProps;
     font-size: 2rem;
     line-height: 1;
   }
-  
 </style>
+
+<script is:client="load">
+  // Rango muy sutil: -1° a +1°
+  document.querySelectorAll("[data-random-rotate]").forEach(card => {
+    const rotateFactor = (Math.random() * 2 - 1); 
+    card.style.transform = `rotate(${rotateFactor}deg)`;
+  });
+</script>
