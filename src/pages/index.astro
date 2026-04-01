@@ -4,20 +4,25 @@ import ProccessCard from '../components/UI/processCard.astro';
 import projects from "../data/projects.json";
 import proccess from "../data/proccess.json";
 import ProjectCard from '../components/UI/projectCard.astro';
-import './../styles/globals.css';
 ---
 
-<Layout>
+<Layout
+  title="MANGO — Full Stack & UX/UI"
+  description="Portfolio: desarrollo full stack, diseño UX/UI y proceso de trabajo. Basado en España."
+  preloadImage="/foto-principal.webp"
+>
 
 <div id="smooth-wrapper">
   <div id="smooth-content">
 
     <main id="container">
 
-      <section id="hero" class="section absolute top-0 h-dvh rounded-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-60 bg-[url('/foto-principal.jpg')] bg-cover bg-center grayscale-100 overflow-hidden">
-          <div id="title-wrapper" class="fixed bottom-10 left-0 w-full px-5 z-50 flex justify-between opacity-100">
-              <h1 id="title" class="relative text-white w-[60%] leading-none">
-                  Full Stack Developer<br />UX/UI Designer
+      <section id="hero" class="section absolute top-0 h-dvh rounded-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-60 bg-[url('/foto-principal.webp')] bg-cover xl:bg-center bg-left grayscale-100 overflow-hidden">
+          <div id="title-wrapper" class="fixed bottom-10 left-0 w-full px-5 z-50 flex flex-col xl:flex-row justify-between gap-5 opacity-100">
+              <h1 id="title" class="relative text-white xl:w-[60%] w-full leading-none">
+                  Full Stack Developer
+                  <br />
+                  UX/UI designer
               </h1>
               <span id="location" class="flex relative text-white items-end font-bold text-[1rem]">
                   Based in Spain
@@ -26,26 +31,28 @@ import './../styles/globals.css';
       </section>
 
       <section id="about" class="section absolute top-0 h-screen rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-50">
-          <div id="about-title" class="flex flex-col w-2/3 relative left-[-100px]">
-              <h2 class="text-white pb-5">
+          <div id="about-title" class="flex flex-col xl:w-2/3 w-full relative left-[-360px] xl:-left-100px">
+              <h2 id="about-heading" class="relative text-white pb-5">
                   Design & Development
                   <span class="text-[#FCEC00]">to tackle</span> real world problems
               </h2>
-              <p class="description text-white md:max-w-2/3">
+              <p id="about-lede" class="description relative text-white md:max-w-2xl">
                   With experience across design, UX/UI, and web development.
                   I understand the full creative process and enjoy structure, planning, and problem‑solving.
               </p>
           </div>
       </section>
 
-      <section id="proccess" class="section absolute top-0 h-250 w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-40">
-          <div class="flex flex-col w-full z-20">
-              <h2 class="text-white pb-5">
+      <section id="proccess" class="section section-process absolute top-0 h-250 max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-40">
+          <div class="flex shrink-0 flex-col w-full z-20">
+              <h2 id="process-heading" class="relative text-white pb-5">
                   Here's my <span class="text-[#FCEC00]">process</span>
               </h2>
-              <p class="description text-white">Let's deep dive into my workflow</p>
+              <p id="process-lede" class="description relative text-white">Let's deep dive into my workflow</p>
+          </div>
 
-              <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-10 z-30">
+          <div class="process-scroll mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
+              <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-6 md:pt-10 z-30">
                   {proccess.map((p, index) => (
                       <ProccessCard
                           key={index}
@@ -58,13 +65,18 @@ import './../styles/globals.css';
           </div>
       </section>
 
-      <section id="projects" class="section absolute top-0 h-auto w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pb-20 mb-20 flex z-30"> 
-          <div class="flex flex-col w-full">
-              <h2 class="text-white pt-20">
+      <section id="projects" class="section section-projects absolute top-0 h-auto max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-md lg:backdrop-blur-2xl px-5 pb-16 md:pb-20 mb-12 md:mb-20 z-30"> 
+          <div class="flex shrink-0 w-full flex-col justify-between gap-2 pt-20 sm:flex-row sm:items-end">
+              <h2 id="projects-heading" class="relative text-white">
                   Some <span class="text-[#FCEC00]">projects</span>
               </h2>
+              <span id="projects-aside" class="relative shrink-0 text-right text-sm font-medium text-white/70">
+                  Selected work
+              </span>
+          </div>
 
-              <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-10 z-30">
+          <div class="projects-scroll mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
+              <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-2 md:pt-10 z-30">
                   {projects.map((p, index) => (
                       <ProjectCard
                           key={index}
@@ -82,13 +94,14 @@ import './../styles/globals.css';
           </div>
       </section>
 
-
-      <section id="contact" class="section absolute top-0 h-192 w-full rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 items-center justify-between pb-10 z-10">
-          <h2 class="contact-title text-white self-end text-6xl w-2/3 wrap-break fixed bottom-5 z-50">Shall we talk ?</h2>
-          <div class="flex flex-col-reverse items-end gap-2 self-end align-bottom z-50">
+      <section id="contact" class="section section-contact absolute top-0 flex min-h-dvh h-dvh max-md:min-h-dvh max-md:h-dvh w-full flex-col rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 max-md:justify-end max-md:pt-8 max-md:pb-10 items-center justify-between pb-10 z-10">
+        <div class="contact-inner fixed bottom-10 left-0 w-full px-5 z-50 flex justify-between max-md:relative max-md:bottom-auto max-md:mt-0 max-md:w-full max-md:px-0">  
+        <h2 id="contact-heading" class="contact-title relative text-white self-end text-6xl w-2/3 wrap-break z-50">Shall we talk ?</h2>
+          <div id="contact-aside" class="relative flex flex-col-reverse items-end gap-2 self-end align-bottom z-50 pb-5 max-md:pb-0">
               <span class="text-white">LinkedIn</span>
-              <span class="text-white">Email</span>
+              <span class="flex relative text-white items-end font-bold text-[1rem]">Email</span>
           </div>
+        </div>
       </section>
 
     </main>
@@ -99,7 +112,18 @@ import './../styles/globals.css';
 </Layout>
 
 <style>
-    html { overflow-x: hidden; }
+    html {
+      overflow-x: hidden;
+      scroll-behavior: auto;
+    }
+
+    /* Evita “rebote” y doble scroll con capas transformadas en iOS */
+    @supports (-webkit-touch-callout: none) {
+      html, body {
+        overscroll-behavior-y: contain;
+      }
+    }
+
     .section { width: 100%; }
 
     h1, h2, span, p { font-family: Inter, sans-serif; }
@@ -118,7 +142,7 @@ import './../styles/globals.css';
     }
 
     .contact-title {
-        font-size: clamp(8rem, 15vw, 15rem);
+        font-size: clamp(6rem, 15vw, 15rem);
     }
 
     .description {
@@ -126,6 +150,55 @@ import './../styles/globals.css';
         font-size: 1rem;
         line-height: 1.3;
     }
+
+    /* Scroll interno táctil en process / projects (móvil) */
+    @media (max-width: 1023px) {
+      .process-scroll,
+      .projects-scroll {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+      }
+    }
+
+    /* Solo accesibilidad: sin animación de scroll */
+    @media (prefers-reduced-motion: reduce) {
+      #smooth-wrapper,
+      #smooth-content {
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      #container {
+        position: relative !important;
+        min-height: auto !important;
+        height: auto !important;
+      }
+
+      #container .section {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 100% !important;
+      }
+
+      #hero {
+        min-height: 100dvh;
+      }
+
+      #title-wrapper {
+        position: absolute !important;
+        bottom: 2.5rem;
+        left: 0;
+      }
+
+      #contact .contact-inner {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+      }
+    }
+
 </style>
 
 <script>
@@ -135,65 +208,171 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-// ScrollSmoother necesita wrapper + content
-const smoother = ScrollSmoother.create({
-  wrapper: "#smooth-wrapper",
-  content: "#smooth-content",
-  smooth: 1.2,
-  effects: true,
-});
+function buildTimeline() {
+  return gsap
+    .timeline()
+    .to("#hero", {
+      top: "-100vh",
+      duration: 0.5,
+      ease: "power2.out",
+    })
+    .to(
+      "#title-wrapper > #title",
+      {
+        left: "-100vw",
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<"
+    )
+    .to(
+      "#title-wrapper > #location",
+      {
+        right: "-100vw",
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<"
+    )
+    .to("#about", {
+      top: "-100vh",
+      duration: 2,
+      ease: "circ.out",
+    })
+    .to("#proccess", {
+      left: "-150vw",
+      duration: 2,
+      ease: "circ.out",
+    })
+    .to("#projects", {
+      top: "-150vh",
+      duration: 2,
+      ease: "circ.out",
+    });
+}
 
-// Timeline principal
-const tl = gsap.timeline()
-  .to("#hero", {
-    top: "-100vh",
-    duration: 0.5,
-    ease: "power2.out",
-  })
-  .to("#title-wrapper > #title", {
-    left: "-100vw",
-    duration: 1,
-    ease: "power2.out",
-  }, "<")
-  .to("#title-wrapper > #location", {
-    right: "-100vw",
-    duration: 1,
-    ease: "power2.out",
-  }, "<")
-  .to("#about > #about-title", {
-    left: "100px",
-    duration: 1,
-    ease: "circ.out",
-  }, "<")
-  .to("#about", {
-    top: "-100vh",
-    duration: 2,
-    ease: "circ.out",
-  })
-  .to("#proccess", {
-    left: "-150vw",
-    duration: 2,
-    ease: "circ.out",
-  })
-  .to("#projects", {
-    top: "-150vh",
-    duration: 2,
-    ease: "circ.out",
-  })
-  .to("#about-me", {
-    top: "-100vh",
-    duration: 2,
-    ease: "circ.out",
-  });
+function buildTimelineMobile() {
+  return gsap
+    .timeline()
+    .to("#hero", {
+      top: "-100vh",
+      duration: 0.5,
+      ease: "power2.out",
+    })
+    .to(
+      "#title-wrapper > #title",
+      {
+        left: "-100vw",
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<"
+    )
+    .to(
+      "#title-wrapper > #location",
+      {
+        right: "-100vw",
+        duration: 1,
+        ease: "power2.out",
+      },
+      "<"
+    )
+    .to("#about", {
+      top: "-100vh",
+      duration: 2,
+      ease: "circ.out",
+    })
+    .to("#about-title", {
+      left: "120vw",
+      duration: 2,
+      ease: "circ.out",
+    }, "<")
+    .to("#proccess", {
+      top: "-100vh",
+      left: 0,
+      duration: 2,
+      ease: "circ.out",
+    })
+    .to("#projects", {
+      top: "-100vh",
+      duration: 2,
+      ease: "circ.out",
+    });
+}
 
-
-// ScrollTrigger sincronizado con smoother
-ScrollTrigger.create({
-  animation: tl,
+const pinScrollConfig = {
   trigger: "#container",
   start: "top top",
-  end: "+=10000",
+  end: "+=9000",
   scrub: true,
   pin: true,
+  anticipatePin: 1,
+  invalidateOnRefresh: true,
+};
+
+const pinScrollConfigMobile = {
+  ...pinScrollConfig,
+  end: "+=12000",
+};
+
+const mm = gsap.matchMedia();
+
+
+mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+  ScrollTrigger.normalizeScroll(true);
+
+  const smoother = ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 1,
+    effects: false,
+    smoothTouch: false,
+  });
+
+  const pinSt = ScrollTrigger.create({
+    ...pinScrollConfig,
+    animation: buildTimeline(),
+  });
+
+  let resizeT = 0;
+  const onResize = () => {
+    window.clearTimeout(resizeT);
+    resizeT = window.setTimeout(() => ScrollTrigger.refresh(), 150);
+  };
+  window.addEventListener("resize", onResize);
+
+  return () => {
+    window.removeEventListener("resize", onResize);
+    window.clearTimeout(resizeT);
+    pinSt.kill();
+    smoother.kill();
+    ScrollTrigger.normalizeScroll(false);
+  };
+});
+
+
+mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
+  ScrollTrigger.normalizeScroll(true);
+
+  gsap.set("#proccess", { left: 0 });
+
+  const pinSt = ScrollTrigger.create({
+    ...pinScrollConfigMobile,
+    animation: buildTimelineMobile(),
+  });
+
+  let resizeT = 0;
+  const onResize = () => {
+    window.clearTimeout(resizeT);
+    resizeT = window.setTimeout(() => ScrollTrigger.refresh(), 150);
+  };
+  window.addEventListener("resize", onResize);
+
+  return () => {
+    window.removeEventListener("resize", onResize);
+    window.clearTimeout(resizeT);
+    pinSt.kill();
+    ScrollTrigger.normalizeScroll(false);
+  };
 });
 </script>
