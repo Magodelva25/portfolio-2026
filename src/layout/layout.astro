@@ -1,28 +1,61 @@
 ---
 import "../styles/globals.css";
 import "../styles/reset.css";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Ruta absoluta en /public para LCP (p. ej. hero) */
+  preloadImage?: string;
+}
+
+const {
+  title = "MANGO — Portfolio",
+  description =
+    "Full Stack Developer y diseñador UX/UI. Portfolio de proyectos, proceso de trabajo y contacto.",
+  preloadImage,
+} = Astro.props;
+const base = Astro.site ?? Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, base).href;
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-    rel="stylesheet"
-  />
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
 
-  <meta name="generator" content={Astro.generator} />
-  <title>MANGO</title>
-</head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<body class="w-auto h-auto bg-black">
-  <slot />
-</body>
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+
+  <body class="bg-black h-fit">
+    <slot />
+  </body>
+</html>
 
 <style>
-  html, body { font-family: "Inter", sans-serif; }
+  html,
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+  }
 </style>

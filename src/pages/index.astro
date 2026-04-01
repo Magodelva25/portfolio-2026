@@ -30,7 +30,7 @@ import ProjectCard from '../components/UI/projectCard.astro';
           </div>
       </section>
 
-      <section id="about" class="section absolute top-0 h-screen rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-50">
+      <section id="about" class="section absolute top-0 h-auto rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-50">
           <div id="about-title" class="flex flex-col xl:w-2/3 w-full relative left-[-360px] xl:-left-100px">
               <h2 id="about-heading" class="relative text-white pb-5">
                   Design & Development
@@ -45,10 +45,10 @@ import ProjectCard from '../components/UI/projectCard.astro';
 
       <section id="proccess" class="section section-process absolute top-0 h-250 max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-40">
           <div class="flex shrink-0 flex-col w-full z-20">
-              <h2 id="process-heading" class="relative text-white pb-5">
+              <h2 class="text-white pb-5">
                   Here's my <span class="text-[#FCEC00]">process</span>
               </h2>
-              <p id="process-lede" class="description relative text-white">Let's deep dive into my workflow</p>
+              <p class="description text-white">Let's deep dive into my workflow</p>
           </div>
 
           <div class="process-scroll mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
@@ -66,13 +66,10 @@ import ProjectCard from '../components/UI/projectCard.astro';
       </section>
 
       <section id="projects" class="section section-projects absolute top-0 h-auto max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-md lg:backdrop-blur-2xl px-5 pb-16 md:pb-20 mb-12 md:mb-20 z-30"> 
-          <div class="flex shrink-0 w-full flex-col justify-between gap-2 pt-20 sm:flex-row sm:items-end">
-              <h2 id="projects-heading" class="relative text-white">
+          <div class="flex shrink-0 flex-col w-full pt-20">
+              <h2 class="text-white">
                   Some <span class="text-[#FCEC00]">projects</span>
               </h2>
-              <span id="projects-aside" class="relative shrink-0 text-right text-sm font-medium text-white/70">
-                  Selected work
-              </span>
           </div>
 
           <div class="projects-scroll mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
@@ -96,8 +93,8 @@ import ProjectCard from '../components/UI/projectCard.astro';
 
       <section id="contact" class="section section-contact absolute top-0 flex min-h-dvh h-dvh max-md:min-h-dvh max-md:h-dvh w-full flex-col rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 max-md:justify-end max-md:pt-8 max-md:pb-10 items-center justify-between pb-10 z-10">
         <div class="contact-inner fixed bottom-10 left-0 w-full px-5 z-50 flex justify-between max-md:relative max-md:bottom-auto max-md:mt-0 max-md:w-full max-md:px-0">  
-        <h2 id="contact-heading" class="contact-title relative text-white self-end text-6xl w-2/3 wrap-break z-50">Shall we talk ?</h2>
-          <div id="contact-aside" class="relative flex flex-col-reverse items-end gap-2 self-end align-bottom z-50 pb-5 max-md:pb-0">
+        <h2 class="contact-title text-white self-end text-6xl w-2/3 wrap-break z-50">Shall we talk ?</h2>
+          <div class="flex flex-col-reverse items-end gap-2 self-end align-bottom z-50 pb-5 max-md:pb-0">
               <span class="text-white">LinkedIn</span>
               <span class="flex relative text-white items-end font-bold text-[1rem]">Email</span>
           </div>
@@ -186,11 +183,6 @@ import ProjectCard from '../components/UI/projectCard.astro';
         min-height: 100dvh;
       }
 
-      #title-wrapper {
-        position: absolute !important;
-        bottom: 2.5rem;
-        left: 0;
-      }
 
       #contact .contact-inner {
         position: relative !important;
@@ -278,12 +270,13 @@ function buildTimelineMobile() {
       "<"
     )
     .to("#about", {
-      top: "-100vh",
+      top: "-200vh",
       duration: 2,
       ease: "circ.out",
-    })
+    }, "<"
+  )
     .to("#about-title", {
-      left: "120vw",
+      left: "100vw",
       duration: 2,
       ease: "circ.out",
     }, "<")
