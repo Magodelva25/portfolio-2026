@@ -30,8 +30,8 @@ import ProjectCard from '../components/UI/projectCard.astro';
           </div>
       </section>
 
-      <section id="about" class="section absolute top-0 h-auto rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-50">
-          <div id="about-title" class="flex flex-col xl:w-2/3 w-full relative left-[-360px] xl:-left-100px">
+      <section id="about" class="section absolute top-0 h-dvh rounded-t-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-50">
+          <div id="about-title" class="flex flex-col xl:w-2/3 w-full relative left-[-100vw]">
               <h2 id="about-heading" class="relative text-white pb-5">
                   Design & Development
                   <span class="text-[#FCEC00]">to tackle</span> real world problems
@@ -43,8 +43,8 @@ import ProjectCard from '../components/UI/projectCard.astro';
           </div>
       </section>
 
-      <section id="proccess" class="section section-process absolute top-0 h-250 max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-40">
-          <div class="flex shrink-0 flex-col w-full z-20">
+      <section id="proccess" class="section absolute top-0 h-dvh max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-2xl px-5 pt-20 mb-20 z-40">
+          <div id="process-title" class="flex flex-col xl:w-2/3 w-full relative left-[-100vw]">
               <h2 class="text-white pb-5">
                   Here's my <span class="text-[#FCEC00]">process</span>
               </h2>
@@ -54,27 +54,30 @@ import ProjectCard from '../components/UI/projectCard.astro';
           <div class="process-scroll mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
               <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-6 md:pt-10 z-30">
                   {proccess.map((p, index) => (
-                      <ProccessCard
-                          key={index}
-                          title={p.title}
-                          description={p.description}
-                          tags={p.tags}
-                      />
+                      <div class="process-card-wrapper">
+                        <ProccessCard
+                            key={index}
+                            title={p.title}
+                            description={p.description}
+                            tags={p.tags}
+                        />
+                      </div>
                   ))}
               </div>
           </div>
       </section>
 
-      <section id="projects" class="section section-projects absolute top-0 h-auto max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-md lg:backdrop-blur-2xl px-5 pb-16 md:pb-20 mb-12 md:mb-20 z-30"> 
-          <div class="flex shrink-0 flex-col w-full pt-20">
+      <section id="projects" class="section section-projects absolute top-0 h-dvh max-md:flex max-md:h-dvh max-md:max-h-dvh max-md:min-h-0 max-md:flex-col max-md:overflow-hidden w-full rounded-3xl bg-black/25 backdrop-blur-md lg:backdrop-blur-2xl px-5 pb-16 md:pb-20 mb-12 md:mb-20 z-30"> 
+          <div id="projects-title" class="flex relative flex-col w-full pt-20 left-[-100vw]">
               <h2 class="text-white">
                   Some <span class="text-[#FCEC00]">projects</span>
               </h2>
           </div>
 
-          <div class="projects-scroll mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
+          <div class="projects-scroll mt-6 h-dvh flex-1 overflow-y-auto overscroll-y-contain pb-4 md:mt-0 md:flex-none md:overflow-visible md:pb-0">
               <div class="projects-gallery grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 pt-2 md:pt-10 z-30">
                   {projects.map((p, index) => (
+                      <div class="projects-card-wrapper">
                       <ProjectCard
                           key={index}
                           fecha={p.fecha}
@@ -86,12 +89,14 @@ import ProjectCard from '../components/UI/projectCard.astro';
                           tags={p.tags}
                           slugs={p.slug}
                       />
+                    </div>
+
                   ))}
               </div>
           </div>
       </section>
 
-      <section id="contact" class="section section-contact absolute top-0 flex min-h-dvh h-dvh max-md:min-h-dvh max-md:h-dvh w-full flex-col rounded-t-3xl bg-black/25 backdrop-blur-2xl px-5 max-md:justify-end max-md:pt-8 max-md:pb-10 items-center justify-between pb-10 z-10">
+      <section id="contact" class="section section-contact absolute top-0 flex min-h-dvh h-dvh max-md:min-h-dvh max-md:h-dvh w-full flex-col rounded-t-3xl backdrop-blur-2xl px-5 max-md:justify-end max-md:pt-8 max-md:pb-10 items-center justify-between pb-10 z-10">
         <div class="contact-inner fixed bottom-10 left-0 w-full px-5 z-50 flex justify-between max-md:relative max-md:bottom-auto max-md:mt-0 max-md:w-full max-md:px-0">  
         <h2 class="contact-title text-white self-end text-6xl w-2/3 wrap-break z-50">Shall we talk ?</h2>
           <div class="flex flex-col-reverse items-end gap-2 self-end align-bottom z-50 pb-5 max-md:pb-0">
@@ -99,6 +104,8 @@ import ProjectCard from '../components/UI/projectCard.astro';
               <span class="flex relative text-white items-end font-bold text-[1rem]">Email</span>
           </div>
         </div>
+      </section>
+      <section class="section absolute top-0 h-dvh rounded-3xl w-full items-center bg-black/25 backdrop-blur-2xl px-5 flex z-5 bg-[url('/foto-principal.webp')] bg-cover xl:bg-center bg-left grayscale-100 overflow-hidden">
       </section>
 
     </main>
@@ -114,7 +121,6 @@ import ProjectCard from '../components/UI/projectCard.astro';
       scroll-behavior: auto;
     }
 
-    /* Evita “rebote” y doble scroll con capas transformadas en iOS */
     @supports (-webkit-touch-callout: none) {
       html, body {
         overscroll-behavior-y: contain;
@@ -148,7 +154,13 @@ import ProjectCard from '../components/UI/projectCard.astro';
         line-height: 1.3;
     }
 
-    /* Scroll interno táctil en process / projects (móvil) */
+    /* Estado inicial de la máscara */
+    .process-card-wrapper, .projects-card-wrapper {
+        clip-path: inset(0 0 100% 0);
+        will-change: clip-path;
+    }
+
+
     @media (max-width: 1023px) {
       .process-scroll,
       .projects-scroll {
@@ -157,40 +169,20 @@ import ProjectCard from '../components/UI/projectCard.astro';
       }
     }
 
-    /* Solo accesibilidad: sin animación de scroll */
     @media (prefers-reduced-motion: reduce) {
       #smooth-wrapper,
       #smooth-content {
         height: auto !important;
         overflow: visible !important;
       }
-
       #container {
         position: relative !important;
-        min-height: auto !important;
         height: auto !important;
       }
-
-      #container .section {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        width: 100% !important;
-      }
-
-      #hero {
-        min-height: 100dvh;
-      }
-
-
-      #contact .contact-inner {
-        position: relative !important;
-        bottom: auto !important;
-        left: auto !important;
+      .process-card-wrapper, .projects-card-wrapper  {
+        clip-path: none !important;
       }
     }
-
 </style>
 
 <script>
@@ -201,102 +193,73 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function buildTimeline() {
-  return gsap
-    .timeline()
-    .to("#hero", {
+  const tl = gsap.timeline();
+
+  tl.to("#hero", {
       top: "-100vh",
       duration: 0.5,
       ease: "power2.out",
     })
-    .to(
-      "#title-wrapper > #title",
-      {
-        left: "-100vw",
-        duration: 1,
-        ease: "power2.out",
-      },
-      "<"
-    )
-    .to(
-      "#title-wrapper > #location",
-      {
-        right: "-100vw",
-        duration: 1,
-        ease: "power2.out",
-      },
-      "<"
-    )
-    .to("#about", {
-      top: "-100vh",
+    .to("#title-wrapper > #title", { left: "-100vw", duration: 1 }, "<")
+    .to("#title-wrapper > #location", { right: "-100vw", duration: 1 }, "<")
+    .to("#about-title", { left: "100px", duration: 1, ease: "circ.out" }, "<")
+    .to("#about", { top: "-100vh", duration: 1, ease: "power2.out" }, ">")
+    .to("#process-title", { left: "0", duration: 1, ease: "circ.out" }, "<")
+    .to(".process-card-wrapper", {
+      clipPath: "inset(0% 0% 0% 0%)",
       duration: 2,
-      ease: "circ.out",
-    })
-    .to("#proccess", {
+      ease: "circ.inOut",
+    },)
+
+    tl.to("#proccess", {
       left: "-150vw",
       duration: 2,
-      ease: "circ.out",
-    })
+      ease: "power2.inOut",
+    },)
+    .to("#projects-title",{
+      left: "0",
+      duration: 2,
+      ease: "power2.inOut",
+    },"<")
+    .to(".projects-card-wrapper", {
+      clipPath: "inset(0% 0% 0% 0%)",
+      delay:1,
+      duration: 1,
+      ease: "circ.inOut",
+    }, "<")
     .to("#projects", {
       top: "-150vh",
+      delay:3,
       duration: 2,
       ease: "circ.out",
-    });
+    }, "<");
+
+    return tl;
 }
 
 function buildTimelineMobile() {
-  return gsap
-    .timeline()
-    .to("#hero", {
-      top: "-100vh",
-      duration: 0.5,
-      ease: "power2.out",
-    })
-    .to(
-      "#title-wrapper > #title",
-      {
-        left: "-100vw",
-        duration: 1,
-        ease: "power2.out",
-      },
-      "<"
-    )
-    .to(
-      "#title-wrapper > #location",
-      {
-        right: "-100vw",
-        duration: 1,
-        ease: "power2.out",
-      },
-      "<"
-    )
-    .to("#about", {
-      top: "-200vh",
-      duration: 2,
-      ease: "circ.out",
-    }, "<"
-  )
-    .to("#about-title", {
-      left: "100vw",
-      duration: 2,
-      ease: "circ.out",
-    }, "<")
-    .to("#proccess", {
-      top: "-100vh",
-      left: 0,
-      duration: 2,
-      ease: "circ.out",
-    })
-    .to("#projects", {
-      top: "-100vh",
-      duration: 2,
-      ease: "circ.out",
+  const tl = gsap.timeline();
+  
+  tl.to("#hero", { top: "-100vh", duration: 0.5 })
+    .to("#title-wrapper > #title", { left: "-100vw", duration: 1 }, "<")
+    .to("#title-wrapper > #location", { right: "-100vw", duration: 1 }, "<")
+    .to("#about", { top: "-200vh", duration: 2 }, "<");
+
+    const cards = gsap.utils.toArray(".process-card-wrapper");
+    cards.forEach((card) => {
+      tl.to(card, { clipPath: "inset(0% 0% 0% 0%)", duration: 1 }, "+=0.2");
     });
+
+    tl.to("#proccess", { top: "-100vh", left: 0, duration: 2 })
+    .to("#projects", { top: "-100vh", duration: 2 });
+    
+  return tl;
 }
 
 const pinScrollConfig = {
   trigger: "#container",
   start: "top top",
-  end: "+=9000",
+  end: "+=12000",
   scrub: true,
   pin: true,
   anticipatePin: 1,
@@ -305,67 +268,34 @@ const pinScrollConfig = {
 
 const pinScrollConfigMobile = {
   ...pinScrollConfig,
-  end: "+=12000",
+  end: "+=15000",
 };
 
 const mm = gsap.matchMedia();
 
-
 mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
   ScrollTrigger.normalizeScroll(true);
-
   const smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
     smooth: 1,
-    effects: false,
-    smoothTouch: false,
   });
-
   const pinSt = ScrollTrigger.create({
     ...pinScrollConfig,
     animation: buildTimeline(),
   });
-
-  let resizeT = 0;
-  const onResize = () => {
-    window.clearTimeout(resizeT);
-    resizeT = window.setTimeout(() => ScrollTrigger.refresh(), 150);
-  };
-  window.addEventListener("resize", onResize);
-
   return () => {
-    window.removeEventListener("resize", onResize);
-    window.clearTimeout(resizeT);
     pinSt.kill();
     smoother.kill();
-    ScrollTrigger.normalizeScroll(false);
   };
 });
 
-
 mm.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
-  ScrollTrigger.normalizeScroll(true);
-
   gsap.set("#proccess", { left: 0 });
-
   const pinSt = ScrollTrigger.create({
     ...pinScrollConfigMobile,
     animation: buildTimelineMobile(),
   });
-
-  let resizeT = 0;
-  const onResize = () => {
-    window.clearTimeout(resizeT);
-    resizeT = window.setTimeout(() => ScrollTrigger.refresh(), 150);
-  };
-  window.addEventListener("resize", onResize);
-
-  return () => {
-    window.removeEventListener("resize", onResize);
-    window.clearTimeout(resizeT);
-    pinSt.kill();
-    ScrollTrigger.normalizeScroll(false);
-  };
+  return () => pinSt.kill();
 });
 </script>

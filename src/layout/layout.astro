@@ -1,7 +1,6 @@
 ---
 import "../styles/globals.css";
 import "../styles/reset.css";
-import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -42,10 +41,7 @@ const canonicalUrl = new URL(Astro.url.pathname, base).href;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ClientRouter />
   </head>
 
   <body class="bg-black h-fit">

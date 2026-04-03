@@ -40,11 +40,3 @@ const { title, description, tags } = Astro.props as ProcessProps;
   }
 </style>
 
-<script>
-  // Rango muy sutil: -1° a +1°
-  document.querySelectorAll("[data-random-rotate]").forEach((el) => {
-    if (!(el instanceof HTMLElement)) return;
-    const rotateFactor = Math.random() * 2 - 1;
-    el.style.transform = `rotate(${rotateFactor}deg)`;
-  });
-</script>
